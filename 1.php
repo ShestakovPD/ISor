@@ -8,78 +8,77 @@
 <h2>Тестовое задание</h2>
 <p>
 
-<?php
+    <?php
 
-function findSimple($a,$b){
-    $c=[];
-    for($a=$a;$a<=$b;$a++){
-        $counter = 0;
-        for($j=1;$j<=$a;$j++){
-            if($a % $j==0){
-                $counter++;
+    function findSimple($a,$b){
+        $c=[];
+        for($a=$a;$a<=$b;$a++){
+            $counter = 0;
+            for($j=1;$j<=$a;$j++){
+                if($a % $j==0){
+                    $counter++;
+                }
+            }     //
+            if($counter==2){
+                $c[]=$a;
             }
-        }     //
-        if($counter==2){
-            $c[]=$a;
         }
+        return $c;
     }
-    return $c;
-}
-var_dump(findSimple(12,60)); // вывод массива возвращенного в результате выполнения функции
+    var_dump(findSimple(12,60)); // вывод массива возвращенного в результате выполнения функции
 
-?><br><br><?
+    ?><br><br><?
 
-$a = [3, 4, 2, 7, 8, 6];
+    $a = [3, 4, 2, 7, 4, 3];
 
-function createTrapeze($a)
-{
-    $b = ['a', 'b', 'c'];    // получаем массив $b[a,b,c]
-    $e = sizeof($b);         // получаем количество элементов массива $b, 3 элемента ( кратное трем )
-    foreach ($a as $d => $f) {   // перебираем массив $a (переданный в функцию) по ключу (массива) $d => значению $f
-        $c[floor($d / $e)][$b[$d % $e]] = $f;
-    }         // массив $c вычисляется как [ floor (Округляет дробь в меньшую сторону)
-    // ($d / $e) - получаем долю от трех
-    // это наш текущий элемент
-    // [$b [$d % $e]] - это наше значение под текущим ключом. $d % $e - остаток от деления на $e
-    // позволяет нам проверить кратен ли текущий элемент 3.
-    return $c; // возвращаем вычисленное значение которому присвоен ключ
-}
-$a = createTrapeze($a);
+    function createTrapeze($a)
+    {
+        $b = ['a', 'b', 'c'];    // получаем массив $b[a,b,c]
+
+        $as[]=array_chunk($a, 3, true); // разбиваем массив по массивам с тремя элементами
+        $i=0;
+        foreach ($as[0] as $d) {
+            $c[] = array_combine($b,$as[0][$i]); // комбинируем массивы для получения искомого
+            // состояния [‘a’=>1,’b’=>2,’с’=>3],[‘a’=>4,’b’=>5 ,’c’=>6]
+            $i++;
+        }
+        return $c; // возвращаем сформированный массив
+    }
+    $a = createTrapeze($a);
     var_dump($a);
 
-?><br><br><?
+    ?><br><br><?
 
-function squareTrapeze($e) {
+    function squareTrapeze($e) {
 
-    global $d;
-    $i=0;
+        $i=0;
 
-      foreach ($e as $v1) {
-          $as=$e[$i]["a"];
-          $bs=$e[$i]["b"];
-          $cs=$e[$i]["c"];
-          $p = ($as + $bs) / 2 * $cs; // вычисляем по формуле площадь трапеции;
-          $keys = array($v1);
-          $d[] = array_fill_keys($keys, $p); // присваиваем массиву из элементов кратному трем, ключ,
-          // содержащий результат расчета площади трапеции со сторонами a и b, и высотой c
-          $i++;
+        foreach ($e as $v1) {
+            $as=$e[$i]["a"];
+            $bs=$e[$i]["b"];
+            $cs=$e[$i]["c"];
+            $p = ($as + $bs) / 2 * $cs; // вычисляем по формуле площадь трапеции;
+            $keys = array($v1);
+            $d[] = array_fill_keys($keys, $p); // присваиваем массиву из элементов кратному трем, ключ,
+            // содержащий результат расчета площади трапеции со сторонами a и b, и высотой c
+            $i++;
+        }
+        return $d; //
     }
-    return $d; //
-}
-$d = squareTrapeze($a);
-var_dump($d);
+    $d = squareTrapeze($a);
+    var_dump($d);
 
-?><br><br><?
+    ?><br><br><?
 
     $b[]=max($a);  //получаем значение максимальной площади из полученного массива
     function getSizeForLimit($a, $b) {
 
-           for ($i = 0; $i <= 1; $i++) {
-               $q=(float)$a[$i]["Array"];
+        for ($i = 0; $i <= 1; $i++) {
+            $q=(float)$a[$i]["Array"];
 
-               if ($q<=$b) {
-                  $qw[]=$a[$i];
-               }
+            if ($q<=$b) {
+                $qw[]=$a[$i];
+            }
         }
         return $qw;
     }
@@ -87,73 +86,60 @@ var_dump($d);
 
     ?><br><br><?
 
-    /*
-     *
-    function getMin($a) {
-       Не до конца понятны условия задания
-       "...Результат выполнения: минимальное числа в массиве..."
-
-    что имеется ввиду минимальное (?? значение ??), тогда какого числа в массиве ?..
-    либо необходимо найти минимальное числ"О" из элементов массива ?.
-    либо минимальное значение числа из всех элементов массива..
-    }
-
-    */
-
     $w=$a;
-function printTrapeze($a) {
+    function printTrapeze($a) {
 
-    echo "<table> <tr><td>А</td><td>В</td><td>С</td><td>Площадь</td></tr>";
-    $i=0;
-    foreach ($a as $v1) {
+        echo "<table> <tr><td>А</td><td>В</td><td>С</td><td>Площадь</td></tr>";
+        $i=0;
+        foreach ($a as $v1) {
 
-        $as=$a[$i]['a'];
-        $bs=$a[$i]["b"];
-        $cs=$a[$i]["c"];
+            $as=$a[$i]['a'];
+            $bs=$a[$i]["b"];
+            $cs=$a[$i]["c"];
 
-        $p=(float)squareTrapeze($a)[$i]['Array'];
+            $p=(float)squareTrapeze($a)[$i]['Array'];
 
-        if($p % 2 === 0) {
-            $tleft=''; $tright='';}              //четное
-        else {
-            $tleft='<mark>'; $tright='</mark>';} // нечетное
+            if($p % 2 === 0) {
+                $tleft=''; $tright='';}              //четное
+            else {
+                $tleft='<mark>'; $tright='</mark>';} // нечетное
 
-        echo "<tr><td>$as</td><td>$bs</td><td>$cs</td><td>$tleft $p $tright</td>";
-        $i++;
-      }
+            echo "<tr><td>$as</td><td>$bs</td><td>$cs</td><td>$tleft $p $tright</td>";
+            $i++;
+        }
     }
-printTrapeze($w);
+    printTrapeze($w);
 
     ?><br><br><?
 
     abstract class BaseMath
     {
         // Данные методы должны быть определены в дочернем классе
-        abstract protected function getValue();
 
         abstract protected function exp1($a,$b,$c);
 
         abstract protected function exp2($a,$b,$c);
         // Общий метод
-        public function printOut()
+        public function getValue()
         {
-            print $this->getValue() . "\n";
+            $f = 0;
+            return $this->$f;
         }
     }
 
     class ConcreteClass1 extends BaseMath
     {
-        protected function getValue()
+        public function getValue()
         {
-            $q = 0;
-            return $this->$q;
+            $f = 0;
+            return $this->$f;
         }
 
         public function exp1($a, $b, $c): int
         {
-            $q=$a*($b**$c);
+            $f=$a*($b**$c);
 
-            return $q;
+            return $f;
         }
 
         public function exp2($a,$b,$c): float
@@ -163,7 +149,7 @@ printTrapeze($w);
     }
 
     $class1 = new ConcreteClass1;
-    $class1->printOut(); // включает метод который возвращает результат расчета класса наследника
+    $class1->getValue(); // включает метод который возвращает результат расчета класса наследника
     echo $class1->exp1(1,2,3) . "\n";
     ?><br><?
     echo $class1->exp2(1,2,3) . "\n";
@@ -184,7 +170,7 @@ printTrapeze($w);
             $this->c = $c;
         }
 
-        protected function getValue()
+        public function getValue()
         {
             $f = 0;
             return $this->$f;
@@ -210,10 +196,10 @@ printTrapeze($w);
     }
 
     $class2 = new F1(4,5,6);
-    $class2->printOut();
+    $class2->getValue();
     echo $class2->CalcImplement(4,5,6) . "\n";
 
-?>
+    ?>
 
 </p>
 </body></html>
